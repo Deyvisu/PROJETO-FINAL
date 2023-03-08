@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Usuário</title>
+</head>
+<body>
+    <h1>Digite suas credenciais para excluir seu perfil de usuário</h1>
+
+    <p>ao digitar suas credenciais, se elas forem corretas, seu perfil será excluido.</p>
+    <p>caso queira voltar a utilizar nossos serviços, crie um novo perfil</p>
+
+    <form method="post">
+        <div>
+            <label> E-mail: </label>
+            <input type= "text" name="emailDeletar" placeholder="Digite aqui seu e-mail" value="{{request.form['emailDeletar']}}">
+        </div>
+
+        <div>
+            <label> Senha: </label>
+            <input type= "text" name="senhaDeletar" placeholder="Digite aqui sua senha" value="{{request.form['senhaDeletar']}}">
+        </div>
+
+        <div>
+            <button type="submit">Excluir Perfil</button><a href = "/">Voltar à página inicial</a>
+        </div>
+        
+    </form>
+</body>
+
+</html>

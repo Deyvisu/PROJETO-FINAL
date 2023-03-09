@@ -6,50 +6,52 @@
     <title>Cadastro de Usuário</title>
 </head>
 <body>
-    <h1>Cadastro de Usuário</h1>
+
+    <h1>Cadastro</h1>
+    <div>
 
     <form method="post">
-        <div>
+        <div class="container">
             <label> Nome Completo: </label>
             <input type= "text" name="nomeCompleto" placeholder="Digite aqui seu nome completo" value="{{request.form['nomeCompleto']}}">
         </div>
 
-        <div>
+        <div class="container">
             <label> Idade: </label>
             <input type= "text" name="idade" placeholder="Digite aqui a sua idade" value="{{request.form['idade']}}">
         </div>
 
-        <div>
+        <div class="container">
             <label> Data de Nascimento: </label>
             <input type= "text" name="dataNascimento" placeholder="Digite a sua data de nascimento" value="{{request.form['dataNascimento']}}">
         </div>
 
-        <div>
+        <div class="container">
             <label> CPF: </label>
             <input type= "text" name="cpf" placeholder="Digite aqui seu CPF" value="{{request.form['cpf']}}">
         </div>
 
-        <div>
+        <div class="container">
             <label> Telefone: </label>
             <input type= "text" name="telefone" placeholder="Digite aqui seu telefone para contato" value="{{request.form['telefone']}}">
         </div>
 
-        <div>
+        <div class="container">
             <label> E-mail: </label>
             <input type= "text" name="email" placeholder="Digite aqui seu e-mail para cadastro" value="{{request.form['email']}}">
         </div>
 
-        <div>
+        <div class="container">
             <label> Senha: </label>
             <input type= "text" name="senha" placeholder="Digite aqui sua senha para cadastro" value="{{request.form['senha']}}">
         </div>
 
-        <div>
+        <div class="container">
             <label> Confirmação de Senha: </label>
             <input type= "text" name="confirmacaoSenha" placeholder="Digite novamente sua senha" value="{{request.form['confirmacaoSenha']}}">
         </div>
 
-        <div>
+        <div class="container">
             <button type="submit">Efetuar Cadastro</button>
         </div>
         

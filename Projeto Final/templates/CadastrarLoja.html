@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Loja</title>
+</head>
+<body>
+    <h1>Cadastro de Loja</h1>
+
+    <form method="post">
+        <div>
+            <label> Nome da Loja: </label>
+            <input type= "text" name="nomeLoja" placeholder="Digite aqui seu nome da sua loja" value="{{request.form['nomeLoja']}}">
+        </div>
+
+        <div>
+            <label> CNPJ: </label>
+            <input type= "text" name="cnpj" placeholder="Digite aqui o CNPJ da sua loja" value="{{request.form['cnpj']}}">
+        </div>
+
+        <div>
+            <label> ID do seu Endereço: </label>
+            <input type= "text" name="idEndereço" placeholder="Digite aqui o ID do seu Endereço" value="{{request.form['idEndereço']}}">
+        </div>
+
+        <div>
+            <label> Seu CPF: </label>
+            <input type= "text" name="cpf" placeholder="Digite aqui seu CPF" value="{{request.form['cpf']}}">
+        </div>
+
+    
+        <div>
+            <button type="submit">Efetuar Cadastro de Loja</button>
+        </div>
+        
+    </form>
+</body>
+
+</html>

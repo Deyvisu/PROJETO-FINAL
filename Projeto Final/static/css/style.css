@@ -27,18 +27,25 @@ a:hover {
 
 /*container login*/
 
+
 #login-container {
     background-color: #FFF;
+    box-shadow: #472b5a;
     width: 400px;
-    margin-left: auto;
+    margin-left: auto  ;
     margin-right: auto;
     padding: 40px 30px;         /*fazer margem*/
     margin-top: 10vh;           /*comerçar 10% da tela do usuario*/
     border-radius: 10px;        /*arrendondar cantos*/
     text-align: center;
+
 }
 
 /*formulário*/
+
+h1 {
+    color:#4E0086
+}
 
 form {
     margin-top: 40px;
@@ -49,6 +56,7 @@ label,input{
     display: block;     /*deixar um embaixo do outro*/
     width: 100%;
     text-align: left;
+
 }
 
 label {
@@ -68,7 +76,9 @@ input:focus {
     border-bottom: 3px solid #4E0086;
 }
 
-button[type="submit"]{
+
+
+.botaologin {                       /*chamar classe*/
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
@@ -76,13 +86,49 @@ button[type="submit"]{
     height: 60px;
     width: 150px;
     border-radius: 20px;
-    margin-top: 5px
-    
-
-   
+    margin-top: 5px;   
+    background-color: #4E0086;
+    color: #FFF;
+    cursor: pointer;         /*deixar link com maozinha*/
+ 
 }
 
-.botaologin {
+.botaologin:hover {
+    background-color: #1B223C;
+    transition: .5s;
+}
+
+
+
+/*cadastro*/
+
+#cadastro-container {
+    background-color: #FFF;
+    box-shadow: #472b5a;
+    width: 400px;
+    margin-left: auto  ;
+    margin-right: auto;
+    padding: 40px 30px;         
+    margin-top: 10vh;           
+    border-radius: 10px;        
+    text-align: center;
+
+}
+.botaocadastro {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    height: 60px;
+    width: 170px;
+    border-radius: 20px;
+    margin-top: 5px;   
     background-color: #4E0086;
-    color: #FFF
+    color: #FFF;
+    cursor: pointer;  
+}
+
+.botaocadastro:hover {
+    background-color: #1B223C;
+    transition: .5s;
 }

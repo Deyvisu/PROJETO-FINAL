@@ -14,11 +14,10 @@
         {% for dado in dados %}
         <p>ID: {{dado[0]}}</p>
         <p>Nome Completo: {{dado[1]}}</p>
-        <p>Idade: {{dado[2]}}</p>
-        <p>Data de Nascimento: {{dado[3]}}</p>
-        <p>CPF: {{dado[4]}}</p> 
-        <p>Telefone: {{dado[5]}}</p>
-        <p>E-mail: {{dado[6]}}</p>
+        <p>Data de Nascimento: {{dado[2]}}</p>
+        <p>CPF: {{dado[3]}}</p>
+        <p>Telefone: {{dado[4]}}</p> 
+        <p>E-mail: {{dado[5]}}</p>
         {%endfor%}
     </ul>
     <h2>Opções de usuário: </h2>
@@ -29,6 +28,7 @@
     <h1>Seus dados de Endereço:</h1>
     <ul>
         {% for dadoEndereço in dadosEndereço %}
+        <p>----------------------------------------</p>
         <p>ID do Endereço: {{dadoEndereço[0]}}</p> 
         <p>CEP: {{dadoEndereço[1]}}</p> 
         <p>Nome da Rua: {{dadoEndereço[2]}}</p> 
@@ -38,7 +38,7 @@
         <p>Ponto de Referência: {{dadoEndereço[6]}}</p> 
         <p>Cidade: {{dadoEndereço[7]}}</p> 
         <p>Estado: {{dadoEndereço[8]}}</p> 
-        <p>ID do Usuário: {{dadoEndereço[9]}}</p>
+        <p>CPF do Usuário: {{dados[0][4]}}</p>
         {%endfor%}
     </ul>
     <h2>Opções de Endereço: </h2>

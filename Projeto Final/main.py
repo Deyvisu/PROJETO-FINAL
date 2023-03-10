@@ -62,7 +62,7 @@ def cadastroEnderço():
 def confirmaçãoAlterarUsuário():
     if request.method == "POST":
         usuario = Usuario(None, None, None, None, request.form["cpfConfirmação"], None, None, None)
-        resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuário("Cadastro_Cliente"))
+        resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuario("Cadastro_Cliente"))
         if resultado == []:
             return render_template('ConfirmaçãoCPFAlterar.html')
         else:
@@ -74,7 +74,7 @@ def confirmaçãoAlterarUsuário():
 def confirmaçãoDeletarUsuário():
     if request.method == "POST":
         usuario = Usuario(None, None, None, None, request.form["cpfConfirmaçãoDeletar"], None, None, None)
-        resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuário("Cadastro_Cliente"))
+        resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuario("Cadastro_Cliente"))
         if resultado == []:
             return render_template('ConfirmaçãoCPFDeletar.html')
         else:

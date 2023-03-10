@@ -23,7 +23,7 @@ def home():
 @app.route("/CadastroUsuario", methods = ("GET", "POST"))
 def cadastrarCli():
     if request.method == "POST":
-        usuario = Usuario("default", request.form['nomeCompleto'],request.form['idade'],request.form['dataNascimento'],request.form['cpf'],request.form['telefone'],request.form['email'],request.form['senha'])
+        usuario = Usuario("default", request.form['nomeCompleto'],request.form['dataNascimento'],request.form['cpf'],request.form['telefone'],request.form['email'],request.form['senha'])
         con.manipularBanco(usuario.inserirUsuario("Cadastro_Cliente"))
 
         return render_template('HomePage.html')
@@ -35,14 +35,12 @@ def cadastrarCli():
 @app.route("/LoginUsuario", methods = ("GET", "POST"))
 def loginCli():
     if request.method == "POST":
-        usuario = Usuario(None, None, None, None, None, None, request.form['emailLogin'], request.form['senhaLogin'])
+        usuario = Usuario(None, None, None, None, None, request.form['emailLogin'], request.form['senhaLogin'])
         resultado = con.consultarBanco(usuario.listarUsuario("Cadastro_Cliente"))
         if resultado == []:
             return render_template('LoginUsuario.html', mensagem = "Usuário não cadastrado!")
         else:
-            endereço = Endereço(None, None, None, None, None, None, None, None, None, resultado[0][0])
-            resultadoEndereço = con.consultarBanco(endereço.listarEndereçoPorIDUsuario("Cadastro_Endereço"))
-            return render_template('ExibirPerfilUsuario.html', dados = resultado, dadosEndereço = resultadoEndereço)
+            return redirect(f'/user/{resultado[0][0]}')
     else:
         return render_template('LoginUsuario.html')
 
@@ -50,18 +48,35 @@ def loginCli():
 @app.route("/CadastroEndereço", methods = ("GET", "POST"))
 def cadastroEnderço():
     if request.method == "POST":
-        endereço = Endereço("default", request.form["cep"], request.form["nomeRua"], request.form["numeroEndereço"], request.form["complemento"], request.form["nomeBairro"], request.form["pontoReferencia"], request.form["cidade"], request.form["estado"], request.form["idUsuario"])
-        con.manipularBanco(endereço.inserirEndereço("Cadastro_Endereço"))
-
-        return render_template('ExibirPerfilUsuario.html')
+        consultaUsuario = con.consultarBanco(f'''SELECT * FROM "Cadastro_Cliente" WHERE "CPF" = '{request.form["cpfUsuario"]}' ''')
+        if consultaUsuario == []:
+            return render_template('CadastroEndereço.html', mensagem = "Usuário não tem endereço cadastrado!")
+        
+        else:
+            endereço = Endereço("default", request.form["cep"], request.form["nomeRua"], request.form["numeroEndereço"], request.form["complemento"], request.form["nomeBairro"], request.form["pontoReferencia"], request.form["cidade"], request.form["estado"], consultaUsuario[0][0])
+            con.manipularBanco(endereço.inserirEndereço("Cadastro_Endereço"))
+            return redirect(f'/user/{consultaUsuario[0][0]}')
+            
     
     else:
         return render_template('CadastroEndereço.html')
 
+@app.route("/user/<int:idUsuario>")
+def verUsuario(idUsuario):
+    id = int(idUsuario)
+    usuario = Usuario(id, None, None, None, None, None, None)
+    resultado = con.consultarBanco(usuario.listarUsuarioID("Cadastro_Cliente"))
+    if resultado == []:
+        return redirect("/HomePage") #pagina de erro
+    else:
+        resultadoEndereço = con.consultarBanco(f'''SELECT * FROM "Cadastro_Endereço" WHERE "ID_Cliente" = '{id}' ''')
+        return render_template('ExibirPerfilUsuario.html', dadosEndereço = resultadoEndereço, dados = resultado)
+    
+
 @app.route("/ConfirmaçãoCPFAlterar", methods=("GET", "POST"))
 def confirmaçãoAlterarUsuario():
     if request.method == "POST":
-        usuario = Usuario(None, None, None, None, request.form["cpfConfirmação"], None, None, None)
+        usuario = Usuario(None, None, None, request.form["cpfConfirmação"], None, None, None)
         resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuario("Cadastro_Cliente"))
         if resultado == []:
             return render_template('ConfirmaçãoCPFAlterar.html')
@@ -73,7 +88,7 @@ def confirmaçãoAlterarUsuario():
 @app.route("/ConfirmaçãoCPFDeletar", methods=("GET", "POST"))
 def confirmaçãoDeletarUsuario():
     if request.method == "POST":
-        usuario = Usuario(None, None, None, None, request.form["cpfConfirmaçãoDeletar"], None, None, None)
+        usuario = Usuario(None, None, None, request.form["cpfConfirmaçãoDeletar"], None, None, None)
         resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuario("Cadastro_Cliente"))
         if resultado == []:
             return render_template('ConfirmaçãoCPFDeletar.html')
@@ -85,7 +100,7 @@ def confirmaçãoDeletarUsuario():
 @app.route("/AlterarUsuario", methods= ("GET", "POST"))
 def alterarUsu():
     if request.method == "POST":
-        usuario = Usuario("default", request.form["nomeCompletoAlterar"], request.form["idadeAlterar"], request.form["dataNascimentoAlterar"], request.form["cpfAlterar"], request.form["telefoneAlterar"], request.form["emailAlterar"], request.form["senhaAlterar"])
+        usuario = Usuario("default", request.form["nomeCompletoAlterar"], request.form["dataNascimentoAlterar"], request.form["cpfAlterar"], request.form["telefoneAlterar"], request.form["emailAlterar"], request.form["senhaAlterar"])
         con.manipularBanco(usuario.alterarUsuario("Cadastro_Cliente"))
 
         return render_template('ExibirPerfilUsuario.html')
@@ -96,7 +111,7 @@ def alterarUsu():
 @app.route("/DeletarUsuario", methods=("GET", "POST"))
 def deletarUsu():
     if request.method == "POST":
-        usuario = Usuario("default", None, None, None, None, None, request.form["emailDeletar"], request.form["senhaDeletar"])
+        usuario = Usuario("default", None, None, None, None, request.form["emailDeletar"], request.form["senhaDeletar"])
         con.manipularBanco(usuario.DeletarUsuario("Cadastro_Cliente"))
 
         return render_template('HomePage.html')

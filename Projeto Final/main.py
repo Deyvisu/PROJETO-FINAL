@@ -5,8 +5,8 @@ from Modelos.classeEndereço import Endereço
 from Modelos.classeCarrinho import Carrinho
 from Controle.classeConexao import Conexao
 
-
-app = Flask(__name__)
+  
+app = Flask(__name__, static_folder="static")
 
 try:
     con = Conexao("MEIC", "localhost","5432","postgres","postgres")

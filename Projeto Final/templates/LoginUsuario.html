@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Cliente Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
 </head>
 
 <body>
+    <div id="login-container">
     <h1>Login</h1>
     <script>
         function doSomething() {
@@ -17,20 +19,15 @@
     <form onsubmit="return doSomething()" method="post">
         <div>
             <label> E-mail de Usuário: </label>
-            <input type="text" name="emailLogin" placeholder="Digite aqui seu e-mail cadastrado"
+            <input type="text" name="emailLogin" placeholder="Digite aqui seu e-mail"
                 value="{{request.form['emailLogin']}}">
-
-        </div>
-
-        <div>
+     
             <label> Senha: </label>
-            <input type="text" name="senhaLogin" placeholder="Digite aqui sua senha cadastrada"
+            <input type="password" name="senhaLogin" placeholder="Digite aqui sua senha"
                 value="{{request.form['senhaLogin']}}">
+            <button type="submit" class="botaologin">Efetuar Login</button>
         </div>
 
-        <div>
-            <button type="submit">Efetuar Login</button>
-        </div>
 
     </form>
 </body>

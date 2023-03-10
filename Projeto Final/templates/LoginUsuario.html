@@ -7,16 +7,23 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
 </head>
 
-<body>
+<body onload="checarMensagem()">
     <div id="login-container">
     <h1>Login</h1>
+
     <script>
-        function doSomething() {
-            alert('Login efetuado!');
-            return true;
+
+        function checarMensagem(){
+            if ('{{mensagem}}'){
+                if ('{{mensagem}}' == "Usuário não cadastrado!")
+                {alert('{{mensagem}}');
+                return true;}
+            }
         }
+        
     </script>
-    <form onsubmit="return doSomething()" method="post">
+
+    <form method="post">
         <div>
             <label> E-mail de Usuário: </label>
             <input type="text" name="emailLogin" placeholder="Digite aqui seu e-mail"

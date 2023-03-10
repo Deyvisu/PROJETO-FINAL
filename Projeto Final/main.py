@@ -37,11 +37,11 @@ def loginCli():
     if request.method == "POST":
         usuario = Usuario(None, None, None, None, None, None, request.form['emailLogin'], request.form['senhaLogin'])
         resultado = con.consultarBanco(usuario.listarUsuario("Cadastro_Cliente"))
-        endereço = Endereço(None, None, None, None, None, None, None, None, None, resultado[0][0])
-        resultadoEndereço = con.consultarBanco(endereço.listarEndereçoPorIDUsuario("Cadastro_Endereço"))
         if resultado == []:
-            return render_template('LoginUsuario.html')
+            return render_template('LoginUsuario.html', mensagem = "Usuário não cadastrado!")
         else:
+            endereço = Endereço(None, None, None, None, None, None, None, None, None, resultado[0][0])
+            resultadoEndereço = con.consultarBanco(endereço.listarEndereçoPorIDUsuario("Cadastro_Endereço"))
             return render_template('ExibirPerfilUsuario.html', dados = resultado, dadosEndereço = resultadoEndereço)
     else:
         return render_template('LoginUsuario.html')
@@ -59,30 +59,30 @@ def cadastroEnderço():
         return render_template('CadastroEndereço.html')
 
 @app.route("/ConfirmaçãoCPFAlterar", methods=("GET", "POST"))
-def confirmaçãoAlterarUsuário():
+def confirmaçãoAlterarUsuario():
     if request.method == "POST":
         usuario = Usuario(None, None, None, None, request.form["cpfConfirmação"], None, None, None)
         resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuario("Cadastro_Cliente"))
         if resultado == []:
             return render_template('ConfirmaçãoCPFAlterar.html')
         else:
-            return redirect('/AlterarUsuário')
+            return redirect('/AlterarUsuario')
     else:
         return render_template('ConfirmaçãoCPFAlterar.html')
     
 @app.route("/ConfirmaçãoCPFDeletar", methods=("GET", "POST"))
-def confirmaçãoDeletarUsuário():
+def confirmaçãoDeletarUsuario():
     if request.method == "POST":
         usuario = Usuario(None, None, None, None, request.form["cpfConfirmaçãoDeletar"], None, None, None)
         resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuario("Cadastro_Cliente"))
         if resultado == []:
             return render_template('ConfirmaçãoCPFDeletar.html')
         else:
-            return redirect('/DeletarUsuário')
+            return redirect('/DeletarUsuario')
     else:
         return render_template('ConfirmaçãoCPFDeletar.html')
 
-@app.route("/AlterarUsuário", methods= ("GET", "POST"))
+@app.route("/AlterarUsuario", methods= ("GET", "POST"))
 def alterarUsu():
     if request.method == "POST":
         usuario = Usuario("default", request.form["nomeCompletoAlterar"], request.form["idadeAlterar"], request.form["dataNascimentoAlterar"], request.form["cpfAlterar"], request.form["telefoneAlterar"], request.form["emailAlterar"], request.form["senhaAlterar"])
@@ -90,10 +90,10 @@ def alterarUsu():
 
         return render_template('ExibirPerfilUsuario.html')
     else:
-        return render_template('AlterarUsuário.html')
+        return render_template('AlterarUsuario.html')
 
 
-@app.route("/DeletarUsuário", methods=("GET", "POST"))
+@app.route("/DeletarUsuario", methods=("GET", "POST"))
 def deletarUsu():
     if request.method == "POST":
         usuario = Usuario("default", None, None, None, None, None, request.form["emailDeletar"], request.form["senhaDeletar"])
@@ -101,7 +101,7 @@ def deletarUsu():
 
         return render_template('HomePage.html')
     else:
-        return render_template('DeletarUsuário.html')
+        return render_template('DeletarUsuario.html')
     
 
 @app.route("/Carrinho", methods=("GET", "POST"))

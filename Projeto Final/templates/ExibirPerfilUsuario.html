@@ -32,32 +32,14 @@
         
         <div class="container-geral">
             </div class="container-dadosendereco">
-                <h1>Seus dados de Endereço:</h1>
-                <ul>
-                    {% for dadoEndereço in dadosEndereço %}
-                    <p>----------------------------------------</p>
-                    <p>ID do Endereço: {{dadoEndereço[0]}}</p> 
-                    <p>CEP: {{dadoEndereço[1]}}</p> 
-                    <p>Nome da Rua: {{dadoEndereço[2]}}</p> 
-                    <p>Número do Endereço: {{dadoEndereço[3]}}</p> 
-                    <p>Complemento: {{dadoEndereço[4]}}</p> 
-                    <p>Nome do Bairro: {{dadoEndereço[5]}}</p> 
-                    <p>Ponto de Referência: {{dadoEndereço[6]}}</p> 
-                    <p>Cidade: {{dadoEndereço[7]}}</p> 
-                    <p>Estado: {{dadoEndereço[8]}}</p> 
-                    <p>CPF do Usuário: {{dados[0][4]}}</p>
-                    {%endfor%}
-                </ul>
+                <h1>Meu Endereço:</h1>
+                <p> Visualize seus Endereço Cadastrados<p> 
+                </p> Altere ou Delete <p>
 
-                <h2>Opções de Endereço: </h2>
-                <a href = "/CadastroEndereço">Cadastrar Endereço</a>
-                <a href = "/ConfirmaçãoCPFendereçoAlterar">Alterar informações de Endereço</a>
-                <a href = "/DeletarEndereço">Deletar um Endereço</a>
-            
             </div>
 
     </div>
-
+        <a href="/"> Entrar meus Endereços</a>
         <a href = "/">Voltar à página inicial</a>
     
     </div>

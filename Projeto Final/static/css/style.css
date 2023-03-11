@@ -22,7 +22,7 @@ a {
 }
 
 a:hover {
-    color: #08558B;
+    color: #4E0086;
 }
 
 /*container login*/
@@ -30,7 +30,6 @@ a:hover {
 
 #login-container {
     background-color: #FFF;
-    box-shadow: #472b5a;
     width: 400px;
     margin-left: auto  ;
     margin-right: auto;
@@ -129,6 +128,73 @@ input:focus {
 }
 
 .botaocadastro:hover {
+    background-color: #1B223C;
+    transition: .5s;
+}
+
+
+
+#confirmacao-cpfalterar{
+    background-color: #FFF;
+    box-shadow: #472b5a;
+    width: 400px;
+    margin-left: auto  ;
+    margin-right: auto;
+    padding: 40px 30px;         
+    margin-top: 10vh;           
+    border-radius: 10px;        
+    text-align: center;
+
+}
+.botaoConfirmacao {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    height: 60px;
+    width: 190px;
+    border-radius: 20px;
+    margin-top: 5px;   
+    background-color: #4E0086;
+    color: #FFF;
+    cursor: pointer;  
+}
+
+.botaoConfirmacao:hover {
+    background-color: #1B223C;
+    transition: .5s;
+}
+
+
+
+
+#alteracao-usuario{
+    background-color: #FFF;
+    box-shadow: #472b5a;
+    width: 400px;
+    margin-left: auto  ;
+    margin-right: auto;
+    padding: 40px 30px;         
+    margin-top: 10vh;           
+    border-radius: 10px;        
+    text-align: center;
+
+}
+.botaoAlterar {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    height: 60px;
+    width: 190px;
+    border-radius: 20px;
+    margin-top: 5px;   
+    background-color: #4E0086;
+    color: #FFF;
+    cursor: pointer;  
+}
+
+.botaoAlterar:hover {
     background-color: #1B223C;
     transition: .5s;
 }

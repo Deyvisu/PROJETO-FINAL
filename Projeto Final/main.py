@@ -9,7 +9,7 @@ from Controle.classeConexao import Conexao
 app = Flask(__name__, static_folder="static")
 
 try:
-    con = Conexao("MEIC", "localhost","5432","postgres","postgres")
+    con = Conexao("MEIC", "localhost","5432","postgres","7289")
 
 except(Exception, psycopg2.Error) as error:
     print("Ocorreu um erro - ", error)
@@ -61,6 +61,7 @@ def cadastroEnderço():
     else:
         return render_template('CadastroEndereço.html')
 
+
 @app.route("/user/<int:idUsuario>")
 def verUsuario(idUsuario):
     id = int(idUsuario)
@@ -69,9 +70,26 @@ def verUsuario(idUsuario):
     if resultado == []:
         return redirect("/HomePage") #pagina de erro
     else:
-        resultadoEndereço = con.consultarBanco(f'''SELECT * FROM "Cadastro_Endereço" WHERE "ID_Cliente" = '{id}' ''')
-        return render_template('ExibirPerfilUsuario.html', dadosEndereço = resultadoEndereço, dados = resultado)
+        return render_template('ExibirPerfilUsuario.html', dados = resultado )
+
+
     
+
+@app.route("/user/<int:idUsuario>/Endereço")
+def verEndereco(idUsuario):
+    id = int(idUsuario)
+    usuario = Usuario(id, None, None, None, None, None, None)
+    resultado = con.consultarBanco(usuario.listarUsuarioID("Cadastro_Cliente"))
+    enderUsuario = Endereço(id,None,None,None,None,None,None,None,None,idUsuario)
+    resultadoEndereço = con.consultarBanco(enderUsuario.listarEndereço("Cadastro_Cliente"))
+    if resultado == []:
+        return redirect("/HomePage") #pagina de erro
+    else:
+        resultadoEndereço = con.consultarBanco(f'''SELECT * FROM "Cadastro_Endereço" WHERE "ID_Cliente" = '{id}' ''')
+        return render_template('ExibirEndereco.html', dadosEndereço = resultadoEndereço)
+
+ 
+
 
 @app.route("/ConfirmaçãoCPFAlterar", methods=("GET", "POST"))
 def confirmaçãoAlterarUsuario():
@@ -84,6 +102,7 @@ def confirmaçãoAlterarUsuario():
             return redirect('/AlterarUsuario')
     else:
         return render_template('ConfirmaçãoCPFAlterar.html')
+    
     
 @app.route("/ConfirmaçãoCPFDeletar", methods=("GET", "POST"))
 def confirmaçãoDeletarUsuario():

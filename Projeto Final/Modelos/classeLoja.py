@@ -16,21 +16,21 @@ class Loja:
     
     def mostrarSobreAsLojas(self, tabela):
         sql = f'''
-        SELECT * FROM "{tabela}" ORDER BY "Nome" ASC'''
+        SELECT * FROM "{tabela}" ORDER BY "Nome_Loja" ASC'''
 
         return sql
     
     def alterarLoja(self, tabela):
         sql = f'''
         UPDATE "{tabela}"
-        SET "Nome" = '{self._nomeLoja}', "CNPJ" = '{self._cnpj}', "ID_Endereço" = '{self._idEndereço}', "CPF do Usuario" = '{self._cpfUsuario}'
-        WHERE "Nome" = '{self._nomeLoja}'
+        SET "Nome_Loja" = '{self._nomeLoja}', "CNPJ" = '{self._cnpj}', "ID_Endereço" = '{self._idEndereço}', "CPF_Usuario" = '{self._cpfUsuario}'
+        WHERE "Nome_Loja" = '{self._nomeLoja}'
         '''
         return sql
 
     def excluirLoja(self, tabela):
         sql = f'''
         DELETE FROM "{tabela}"
-        WHERE "Nome" = '{self._nomeLoja}' '''
+        WHERE "Nome_Loja" = '{self._nomeLoja}' '''
 
         return sql

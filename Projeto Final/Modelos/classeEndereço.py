@@ -49,8 +49,8 @@ class Endereço:
 
         sql = f'''
         UPDATE "{tabela}"
-        SET "CEP" = '{self._cep}', "Nome_Rua" = '{self._nomeRua}', "Numero" = '{self._numero}', "Complemento" = '{self._complemento}', "Nome_Bairro" = '{self._nomeBairro}', "Ponto_Referencia" = '{self._pontoReferencia}', "Cidade" = '{self._cidade}', "Estado" = '{self._estado}', "ID_Cliente" = '{self._idCli}'
-        WHERE "ID" = '{self._id}'
+        SET "CEP" = '{self._cep}', "Nome_Rua" = '{self._nomeRua}', "Numero" = '{self._numero}', "Complemento" = '{self._complemento}', "Nome_Bairro" = '{self._nomeBairro}', "Ponto_Referencia" = '{self._pontoReferencia}', "Cidade" = '{self._cidade}', "Estado" = '{self._estado}'
+        WHERE "CEP" = '{self._cep}'
         '''
         return sql
 

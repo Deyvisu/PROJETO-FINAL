@@ -3,17 +3,18 @@ import psycopg2
 from Modelos.classeUsuario import Usuario
 from Modelos.classeEndereço import Endereço
 from Modelos.classeCarrinho import Carrinho
+from Modelos.classeLoja import Loja
+from Modelos.classeProdutos import Produto
 from Controle.classeConexao import Conexao
 
   
 app = Flask(__name__, static_folder="static")
 
 try:
-    con = Conexao("MEIC", "localhost","5432","postgres","7289")
+    con = Conexao("MEIC", "localhost","5432","postgres","postgres")
 
 except(Exception, psycopg2.Error) as error:
     print("Ocorreu um erro - ", error)
-
 
 
 @app.route("/")
@@ -26,7 +27,9 @@ def cadastrarCli():
         usuario = Usuario("default", request.form['nomeCompleto'],request.form['dataNascimento'],request.form['cpf'],request.form['telefone'],request.form['email'],request.form['senha'])
         con.manipularBanco(usuario.inserirUsuario("Cadastro_Cliente"))
 
-        return render_template('HomePage.html')
+        resultado = con.consultarBanco(usuario.listarUsuario("Cadastro_Cliente"))
+
+        return redirect(f'user/{resultado[0][0]}')
 
     else:
         return render_template('CadastroUsuario.html')
@@ -61,6 +64,15 @@ def cadastroEnderço():
     else:
         return render_template('CadastroEndereço.html')
 
+@app.route("/AlterarEndereco", methods= ("GET", "POST"))
+def alterarEnd():
+    if request.method == "POST":
+        endereco = Endereço("default", request.form["cepAlterar"], request.form["nomeRuaAlterar"], request.form["numeroEnderecoAlterar"], request.form["complementoAlterar"], request.form["nomeBairroAlterar"], request.form["pontoReferenciaAlterar"], request.form["cidadeAlterar"], request.form["estadoAlterar"], None)
+        con.manipularBanco(endereco.alterarEndereço("Cadastro_Cliente"))
+
+        return render_template('ExibirEndereco.html')
+    else:
+        return render_template('AlterarEndereco.html')
 
 @app.route("/user/<int:idUsuario>")
 def verUsuario(idUsuario):
@@ -73,22 +85,16 @@ def verUsuario(idUsuario):
         return render_template('ExibirPerfilUsuario.html', dados = resultado )
 
 
-    
-
-@app.route("/user/<int:idUsuario>/Endereço")
-def verEndereco(idUsuario):
+@app.route("/user/<int:idUsuario>/ExibirEndereco")
+def verEndereço(idUsuario):
     id = int(idUsuario)
     usuario = Usuario(id, None, None, None, None, None, None)
     resultado = con.consultarBanco(usuario.listarUsuarioID("Cadastro_Cliente"))
-    enderUsuario = Endereço(id,None,None,None,None,None,None,None,None,idUsuario)
-    resultadoEndereço = con.consultarBanco(enderUsuario.listarEndereço("Cadastro_Cliente"))
+    resultadoEndereco = con.consultarBanco(f'''SELECT * FROM "Cadastro_Endereço" WHERE "ID_Cliente" = '{id}' ''')
     if resultado == []:
-        return redirect("/HomePage") #pagina de erro
+        return redirect("/ExibirPerfilUsuario")
     else:
-        resultadoEndereço = con.consultarBanco(f'''SELECT * FROM "Cadastro_Endereço" WHERE "ID_Cliente" = '{id}' ''')
-        return render_template('ExibirEndereco.html', dadosEndereço = resultadoEndereço)
-
- 
+        return render_template('ExibirEndereco.html', dadosEndereço = resultadoEndereco, dados = resultado)
 
 
 @app.route("/ConfirmaçãoCPFAlterar", methods=("GET", "POST"))
@@ -116,6 +122,19 @@ def confirmaçãoDeletarUsuario():
     else:
         return render_template('ConfirmaçãoCPFDeletar.html')
 
+@app.route("/ConfirmacaoCPFEnderecoAlterar", methods=("GET", "POST"))
+def confirmaçãoAlterarEndereco():
+    if request.method == "POST":
+        usuario = Usuario(None, None, None, request.form["cpfConfirmação"], None, None, None)
+        resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuario("Cadastro_Cliente"))
+        if resultado == []:
+            return render_template('ConfirmacaoCPFEnderecoAlterar.html')
+        else:
+            return redirect('/AlterarEndereco')
+    else:
+        return render_template('ConfirmacaoCPFEnderecoAlterar.html')
+
+
 @app.route("/AlterarUsuario", methods= ("GET", "POST"))
 def alterarUsu():
     if request.method == "POST":
@@ -136,19 +155,35 @@ def deletarUsu():
         return render_template('HomePage.html')
     else:
         return render_template('DeletarUsuario.html')
+
+@app.route("/CadastroLojaLogin", methods=("GET", "POST"))
+def verificacao():
+    return render_template("CadastroLojaLogin.html")
+
+
+@app.route("/CadastrarLoja", methods=("GET", "POST"))
+def cadastroLoja():
+    if request.method == "POST":
+        loja = Loja("default", request.form["nomeLoja"], request.form["cnpj"], request.form["idEndereço"], request.form["cpf"])
+        con.manipularBanco(loja.cadastrarLoja("Cadastro_Loja"))
+        return render_template("HomePage.html")
+    else:
+        return render_template('CadastrarLoja.html')
     
 
-@app.route("/Carrinho", methods=("GET", "POST"))
-def mostrarCarrinho():
-    if request.method == "POST":
-        carrinho = Carrinho(None, None, None, None, None, None)
-        resultado = con.consultarBanco(carrinho.mostrarCarrinho("Carrinho"))
-        if resultado == []:
-            return render_template('')
-        else:
-            return render_template('', carrinho = resultado)
-    else:
-        return render_template('')
+
+
+# @app.route("/Carrinho", methods=("GET", "POST"))
+# def mostrarCarrinho():
+#     if request.method == "POST":
+#         carrinho = Carrinho(None, None, None, None, None, None)
+#         resultado = con.consultarBanco(carrinho.mostrarCarrinho("Carrinho"))
+#         if resultado == []:
+#             return render_template('')
+#         else:
+#             return render_template('', carrinho = resultado)
+#     else:
+#         return render_template('')
      
 
 if __name__== "__main__":

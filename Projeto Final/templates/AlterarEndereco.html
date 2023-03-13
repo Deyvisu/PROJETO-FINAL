@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterar dados de endereço</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+
+    <form method="post">
+        <div id="alteracao-endereco">
+            <h1>Alteração de Dados</h1>
+            <label> CEP: </label>
+            <input type= "text" name="cepAlterar" placeholder="Digite aqui seu novo cep" value="{{request.form['cepAlterar']}}">
+                
+            <label> Nome da Rua: </label>
+            <input type= "text" name="nomeRuaAlterar" placeholder="Digite aqui o novo nome da rua" value="{{request.form['nomeRuaAlterar']}}">
+            
+            <label> Número do Endereço: </label>
+            <input type= "text" name="numeroEnderecoAlterar" placeholder="Digite o novo numero do endereço" value="{{request.form['numeroEnderecoAlterar']}}">
+        
+            <label> Complemento: </label>
+            <input type= "text" name="complementoAlterar" placeholder="Digite aqui um novo complemento (opcional)" value="{{request.form['complementoAlterar']}}">
+        
+            <label> Nome do Bairro: </label>
+            <input type= "text" name="nomeBairroAlterar" placeholder="Digite aqui um novo nome do bairro" value="{{request.form['nomeBairroAlterar']}}">
+        
+            <label> Ponto de Referência: </label>
+            <input type= "text" name="pontoReferenciaAlterar" placeholder="Digite aqui um novo ponto de referência (opcional)" value="{{request.form['pontoReferenciaAlterar']}}">
+
+            <label> Cidade: </label>
+            <input type= "text" name="cidadeAlterar" placeholder="Digite aqui um novo nome de cidade" value="{{request.form['cidadeAlterar']}}">
+        
+            <label> Estado: </label>
+            <input type= "text" name="estadoAlterar" placeholder="Digite aqui um novo nome de estado" value="{{request.form['estadoAlterar']}}">
+
+            <button type="submit" class="botaoAlterar"> Efetuar Alterações</button> <a href = "/">Voltar à página inicial</a>
+        </div>
+        
+    </form>
+</body>
+
+</html>

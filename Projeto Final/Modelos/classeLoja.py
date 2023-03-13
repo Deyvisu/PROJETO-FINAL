@@ -10,13 +10,13 @@ class Loja:
     def cadastrarLoja(self, tabela):
         sql = f'''
         INSERT INTO "{tabela}"
-        VALUES ('{self._idLoja}', '{self._nomeLoja}', '{self._cnpj}', '{self._idEndereço}', '{self._cpfUsuario}') '''
+        VALUES ({self._idLoja}, '{self._nomeLoja}', '{self._cnpj}', '{self._idEndereço}', '{self._cpfUsuario}') '''
 
         return sql
     
     def mostrarSobreAsLojas(self, tabela):
         sql = f'''
-        SELECT * FROM "{tabela}" ORDER BY "Nome_Loja" ASC'''
+        SELECT * FROM "{tabela}" '''
 
         return sql
     

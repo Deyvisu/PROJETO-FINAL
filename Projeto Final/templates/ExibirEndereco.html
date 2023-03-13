@@ -10,8 +10,8 @@
 </div class="container-dadosendereco">
 <h1>Seus dados de Endereço:</h1>
 <ul>
-    {% for dadoEndereço in dadosEndereço %}
-    <div class="container-enderecocadastrado">                 
+    <div class="container-enderecocadastrado"></div>
+    {% for dadoEndereço in dadosEndereço %}                 
     <p>ID do Endereço: {{dadoEndereço[0]}}</p> 
     <p>CEP: {{dadoEndereço[1]}}</p> 
     <p>Nome da Rua: {{dadoEndereço[2]}}</p> 
@@ -28,7 +28,7 @@
 
 <h2>Opções de Endereço: </h2>
 <a href = "/CadastroEndereço">Cadastrar Endereço</a>
-<a href = "/ConfirmaçãoCPFendereçoAlterar">Alterar informações de Endereço</a>
+<a href = "/ConfirmacaoCPFEnderecoAlterar">Alterar informações de Endereço</a>
 <a href = "/DeletarEndereço">Deletar um Endereço</a>
 
 </div>

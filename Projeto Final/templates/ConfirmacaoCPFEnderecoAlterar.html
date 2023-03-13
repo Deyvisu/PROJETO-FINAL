@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmação de CPF</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+</head>
+
+<body>
+    <div id="confirmacao-cpfalterar">
+    <h1>Confirmação de CPF</h1>
+    <script>
+        function doSomething() {
+            alert('CPF confirmado!');
+            return true;
+        }
+    </script>
+    <form onsubmit="return doSomething()" method="post">
+        <div>
+            <label> CPF do usuário: </label>
+            <input type="text" name="cpfConfirmação" placeholder="Digite aqui seu cpf" value="{{request.form['cpfConfirmação']}}">
+            <button type="submit" class="botaoConfirmacao"> Efetuar Confirmação</button>
+        </div>
+    </form>
+
+</body>
+
+</html>

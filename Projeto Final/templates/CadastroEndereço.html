@@ -1,48 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Endereço</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+
 </head>
+
 <body>
+    <script>
+       function preencherEndereco() {
+    let cep = document.getElementsByName('cep')[0].value;
+    if (cep.length != 8) {
+        alert("O CEP deve conter exatamente 8 caracteres numéricos.");
+        return;
+    }
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.erro) {
+                alert("CEP não encontrado.");
+            } else {
+                document.getElementsByName('nomeRua')[0].value = data.logradouro;
+                document.getElementsByName('nomeBairro')[0].value = data.bairro;
+                document.getElementsByName('cidade')[0].value = data.localidade;
+                document.getElementsByName('estado')[0].value = data.uf;
+            }
+        })
+        .catch(error => {
+            alert("Houve um erro ao preencher o endereço: " + error.message);
+        });
+}
+    </script>
     <h1>Cadastro de Endereço</h1>
 
     <form method="post">
         <div>
             <label> CEP: </label>
-            <input type= "text" name="cep" placeholder="Digite aqui seu cep" value="{{request.form['cep']}}">
-       
+            <input type="text" name="cep" placeholder="Digite aqui seu cep" value="{{request.form['cep']}}">
+            <button type="button" onclick="preencherEndereco()">Preencher Endereço</button>
+
             <label> Nome da Rua: </label>
-            <input type= "text" name="nomeRua" placeholder="Digite aqui o nome da sua rua" value="{{request.form['nomeRua']}}">
-       
+            <input type="text" name="nomeRua" placeholder="Digite aqui o nome da sua rua"
+                value="{{request.form['nomeRua']}}">
+
             <label> Número do Endereço: </label>
-            <input type= "text" name="numeroEndereço" placeholder="Digite aqui o número do Endereço" value="{{request.form['numeroEndereço']}}">
-       
+            <input type="text" name="numeroEndereço" placeholder="Digite aqui o número do Endereço"
+                value="{{request.form['numeroEndereço']}}">
+
             <label> Complemento: </label>
-            <input type= "text" name="complemento" placeholder="Digite aqui um complemento (opcional)" value="{{request.form['complemento']}}">
-        
+            <input type="text" name="complemento" placeholder="Digite aqui um complemento (opcional)"
+                value="{{request.form['complemento']}}">
+
             <label> Nome do Bairro: </label>
-            <input type= "text" name="nomeBairro" placeholder="Digite aqui o nome do Bairro" value="{{request.form['nomeBairro']}}">
-        
+            <input type="text" name="nomeBairro" placeholder="Digite aqui o nome do Bairro"
+                value="{{request.form['nomeBairro']}}">
+
             <label> Ponto de Referência: </label>
-            <input type= "text" name="pontoReferencia" placeholder="Digite aqui um ponto de referencia (opcional)" value="{{request.form['pontoReferencia']}}">
-        
+            <input type="text" name="pontoReferencia" placeholder="Digite aqui um ponto de referencia (opcional)"
+                value="{{request.form['pontoReferencia']}}">
+
             <label> Cidade: </label>
-            <input type= "text" name="cidade" placeholder="Digite aqui a cidade onde você mora" value="{{request.form['cidade']}}">
-       
+            <input type="text" name="cidade" placeholder="Digite aqui a cidade onde você mora"
+                value="{{request.form['cidade']}}">
+
             <label> Estado: </label>
-            <input type= "text" name="estado" placeholder="Digite aqui o estado onde você mora" value="{{request.form['estado']}}">
-       
+            <input type="text" name="estado" placeholder="Digite aqui o estado onde você mora"
+                value="{{request.form['estado']}}">
+
             <label> CPF do Usuário: </label>
-            <input type= "text" name="cpfUsuario" placeholder="Digite aqui seu cpf" value="{{request.form['cpfUsuario']}}">
+            <input type="text" name="cpfUsuario" placeholder="Digite aqui seu cpf"
+                value="{{request.form['cpfUsuario']}}">
         </div>
 
         <div>
             <button type="submit">Efetuar Cadastro de Endereço</button>
         </div>
-        
+
     </form>
+   
+
 </body>
 
 </html>

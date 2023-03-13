@@ -1,4 +1,5 @@
 from flask import *
+import requests
 import psycopg2
 from Modelos.classeUsuario import Usuario
 from Modelos.classeEndereço import Endereço
@@ -20,6 +21,7 @@ except(Exception, psycopg2.Error) as error:
 @app.route("/")
 def home():
     return render_template('HomePage.html')
+
 
 @app.route("/CadastroUsuario", methods = ("GET", "POST"))
 def cadastrarCli():
@@ -59,10 +61,11 @@ def cadastroEnderço():
             endereço = Endereço("default", request.form["cep"], request.form["nomeRua"], request.form["numeroEndereço"], request.form["complemento"], request.form["nomeBairro"], request.form["pontoReferencia"], request.form["cidade"], request.form["estado"], consultaUsuario[0][0])
             con.manipularBanco(endereço.inserirEndereço("Cadastro_Endereço"))
             return redirect(f'/user/{consultaUsuario[0][0]}')
-            
+                    
     
     else:
         return render_template('CadastroEndereço.html')
+    
 
 @app.route("/AlterarEndereco", methods= ("GET", "POST"))
 def alterarEnd():
@@ -170,8 +173,14 @@ def cadastroLoja():
     else:
         return render_template('CadastrarLoja.html')
     
-
-
+@app.route("/MostrarLojas")
+def mostrarLojas():
+        todasLojas = Loja(None, None, None, None, None)
+        resultado = con.consultarBanco(todasLojas.mostrarSobreAsLojas("Cadastro_Loja"))
+        if resultado == []:
+            return render_template("HomePage.html")
+        else:
+            return render_template("MostrarLojas.html", dados = resultado)
 
 # @app.route("/Carrinho", methods=("GET", "POST"))
 # def mostrarCarrinho():

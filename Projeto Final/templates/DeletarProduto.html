@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>DeletarProduto</title>
+</head>
+<body>
+    <h1>Deletar um Produto</h1>
+
+    <p>Para deletar um produto, Digite o ID do produto</p>
+    <p>que está localizado na página <a href="/ExibirProdutos">Exibir Produtos</a></p>
+
+    <form method="post">
+        <div>
+            <label> ID do Produto: </label>
+            <input type= "text" name="idDeletar" placeholder="Digite aqui o ID do Produto" value="{{request.form['idDeletar']}}">
+        </div>
+
+        <div>
+            <button type="submit">Deletar Produto</button><a href = "/">Voltar à página inicial</a>
+        </div>
+        
+    </form>
+</body>
+
+</html>

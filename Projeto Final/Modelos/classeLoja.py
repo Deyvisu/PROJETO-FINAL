@@ -20,6 +20,12 @@ class Loja:
 
         return sql
     
+    def mostrarLojaID(self, tabela):
+        sql = f'''
+        SELECT * FROM "{tabela}" WHERE "ID_Loja" = '{self._idLoja}' '''
+
+        return sql
+    
     def alterarLoja(self, tabela):
         sql = f'''
         UPDATE "{tabela}"

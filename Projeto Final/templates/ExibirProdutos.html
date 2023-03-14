@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset ="UTF-8">
+    <title>VerProdutos</title>
+
+
+</head>
+
+</div class="container-dadosProdutos">
+<h1>Seus Produtos:</h1>
+<ul>
+    <div class="container-produtoCadastrado"></div>
+    {% for dadoProduto in dadosProduto %}                 
+    <p>ID do Produto: {{dadoProduto[0]}}</p> 
+    <p>Nome do Produto: {{dadoProduto[1]}}</p> 
+    <p>Categoria: {{dadoProduto[2]}}</p> 
+    <p>Quantidade: {{dadoProduto[3]}}</p> 
+    <p>Preço Unitário do Produto: {{dadoProduto[4]}}</p> 
+    <p>ID da Loja: {{dadoProduto[5]}}</p> 
+    {%endfor%}
+    </div>
+</ul>
+
+<h2>Opções de Produto: </h2>
+<a href = "/AlterarProduto">Alterar um Produto</a>
+<a href = "/DeletarProduto">Deletar um Produto</a>
+<a href = "/CadastrarProdutos">Voltar ao Cadastro de Produtos</a>
+
+<h2>Outras Opções</h2>
+<a href = "/ExibirPerfilUsuario">Voltar ao Perfil de Usuario</a>
+<a href = "/MinhasLojas">Voltar a sua Loja</a>
+
+</div>
+
+</div>
+
+<a href = "/">Voltar à página inicial</a>

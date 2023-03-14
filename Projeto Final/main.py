@@ -77,6 +77,7 @@ def alterarEnd():
     else:
         return render_template('AlterarEndereco.html')
 
+
 @app.route("/user/<int:idUsuario>")
 def verUsuario(idUsuario):
     id = int(idUsuario)
@@ -112,18 +113,6 @@ def confirmaçãoAlterarUsuario():
     else:
         return render_template('ConfirmaçãoCPFAlterar.html')
     
-    
-@app.route("/ConfirmaçãoCPFDeletar", methods=("GET", "POST"))
-def confirmaçãoDeletarUsuario():
-    if request.method == "POST":
-        usuario = Usuario(None, None, None, request.form["cpfConfirmaçãoDeletar"], None, None, None)
-        resultado = con.consultarBanco(usuario.confirmaçãoCPFUsuario("Cadastro_Cliente"))
-        if resultado == []:
-            return render_template('ConfirmaçãoCPFDeletar.html')
-        else:
-            return redirect('/DeletarUsuario')
-    else:
-        return render_template('ConfirmaçãoCPFDeletar.html')
 
 @app.route("/ConfirmacaoCPFEnderecoAlterar", methods=("GET", "POST"))
 def confirmaçãoAlterarEndereco():
@@ -149,16 +138,6 @@ def alterarUsu():
         return render_template('AlterarUsuario.html')
 
 
-@app.route("/DeletarUsuario", methods=("GET", "POST"))
-def deletarUsu():
-    if request.method == "POST":
-        usuario = Usuario("default", None, None, None, None, request.form["emailDeletar"], request.form["senhaDeletar"])
-        con.manipularBanco(usuario.DeletarUsuario("Cadastro_Cliente"))
-
-        return render_template('HomePage.html')
-    else:
-        return render_template('DeletarUsuario.html')
-
 @app.route("/CadastroLojaLogin", methods=("GET", "POST"))
 def verificacao():
     return render_template("CadastroLojaLogin.html")
@@ -172,7 +151,20 @@ def cadastroLoja():
         return render_template("HomePage.html")
     else:
         return render_template('CadastrarLoja.html')
+
+
+@app.route("/user/<int:idUsuario>/MinhasLojas")
+def verMinhasLojas(idUsuario):
+    id = int(idUsuario)
+    usuario = Usuario(id, None, None, None, None, None, None)
+    resultado = con.consultarBanco(usuario.listarUsuarioID("Cadastro_Cliente"))
+    resultadoMinhaLoja = con.consultarBanco(f'''SELECT * FROM "Cadastro_Loja" WHERE "CPF_Usuario" = '{resultado[0][3]}' ''')
+    if resultado == []:
+        return redirect("/ExibirPerfilUsuario")
+    else:
+        return render_template('MinhasLojas.html', dados = resultadoMinhaLoja)
     
+
 @app.route("/MostrarLojas")
 def mostrarLojas():
         todasLojas = Loja(None, None, None, None, None)
@@ -181,6 +173,58 @@ def mostrarLojas():
             return render_template("HomePage.html")
         else:
             return render_template("MostrarLojas.html", dados = resultado)
+
+
+@app.route("/CadastrarProdutos", methods=("GET", "POST"))
+def cadastrarProd():
+    if request.method == "POST":
+        produto = Produto("default", request.form["nomeProduto"], request.form["categoria"], request.form["quantidade"], request.form["preco"], request.form["idLoja"])
+        con.manipularBanco(produto.cadastrarProduto("Cadastro_Produto"))
+        resultadoProduto = con.consultarBanco(produto.listarProdutos("Cadastro_Produto"))
+        if resultadoProduto == []:
+            return render_template("ExibirProdutos.html") #escrever mensagem que retornou vazio
+        else:
+            return render_template("ExibirProdutos.html", dadosProduto = resultadoProduto)
+    else:
+        return render_template("CadastrarProdutos.html") #escrever mensagem que tentou enviar vazio
+
+
+@app.route("/VerificarIDLoja", methods=("GET", "POST"))
+def verificarIDLoja():
+    if request.method == "POST":
+        loja = Loja(request.form["idLoja"], None, None, None, None)
+        resultado = con.consultarBanco(loja.mostrarLojaID("Cadastro_Loja"))
+        if resultado == []:
+            return render_template("VerificarIDLoja.html") #mensagem de erro de ID vazio
+        else:
+            return redirect('/ExibirProdutos')
+    else:
+        return render_template("VerificarIDLoja.html") #mensagem de erro de ID de loja
+
+
+@app.route("/ExibirProdutos")
+def exibirProd():
+    produtos = Produto(None, None, None, None, None, None)
+    resultado = con.consultarBanco(produtos.listarProdutos("Cadastro_Produto"))
+
+    return render_template('ExibirProdutos.html', dadosProduto = resultado)
+
+
+@app.route("/DeletarProduto", methods=("GET", "POST"))
+def deletarProd():
+    if request.method == "POST":
+        consultarProduto = Produto(request.form["idDeletar"], None, None, None, None, None)
+        resultadoConsultarProduto = con.consultarBanco(consultarProduto.listarProdutoID("Cadastro_Produto"))
+        if resultadoConsultarProduto == []:
+            return render_template('ExibirProdutos.html') #colocar mensagem de que o id do produto n existe
+        else: 
+            produto = Produto(request.form["idDeletar"], None, None, None, None, None)
+            con.manipularBanco(produto.deletarProduto("Cadastro_Produto"))
+            resultado = con.consultarBanco(produto.listarProdutos("Cadastro_Produto"))
+
+            return render_template("ExibirProdutos.html", dadosProduto = resultado) #colocar mensagem de que o produto foi deletado
+    else:
+        return render_template('DeletarProduto.html') #colocar mensagem de erro
 
 # @app.route("/Carrinho", methods=("GET", "POST"))
 # def mostrarCarrinho():

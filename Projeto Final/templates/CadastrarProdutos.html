@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>CadastrodeProduto</title>
+</head>
+<body>
+    <h1>Cadastro de Produtos</h1>
+
+    <form method="post">
+        <div>
+            <label> Nome do Produto: </label>
+            <input type= "text" name="nomeProduto" placeholder="Digite aqui nome do Produto" value="{{request.form['nomeProduto']}}">
+        </div>
+
+        <div>
+            <label> Categoria: </label>
+            <input type= "text" name="categoria" placeholder="Digite aqui a Categoria do produto" value="{{request.form['categoria']}}">
+        </div>
+
+        <div>
+            <label> Quantidade: </label>
+            <input type= "text" name="quantidade" placeholder="Digite aqui a Quantidade" value="{{request.form['quantidade']}}">
+        </div>
+
+        <div>
+            <label> Preço Unitário: </label>
+            <input type= "text" name="preco" placeholder="Digite o Preço Unitário do produto" value="{{request.form['preco']}}">
+        </div>
+
+        <div>
+            <label> ID da Loja: </label>
+            <input type= "text" name="idLoja" placeholder="Digite aqui o ID da loja a qual o produto pertence" value="{{request.form['idLoja']}}">
+        </div>
+    
+        <div>
+            <button type="submit">Efetuar Cadastro do Produto</button>
+        </div>
+        
+    </form>
+</body>
+
+</html>

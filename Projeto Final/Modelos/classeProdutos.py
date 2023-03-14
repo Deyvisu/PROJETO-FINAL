@@ -16,14 +16,19 @@ class Produto:
     
     def listarProdutos(self, tabela):
         sql = f'''
-        SELECT * FROM "{tabela}" ORDER BY "ID do Produto" ASC '''
+        SELECT * FROM "{tabela}" ORDER BY "ID" ASC '''
+        return sql
+    
+    def listarProdutoID(self, tabela):
+        sql = f'''
+        SELECT * FROM "{tabela}" WHERE "ID" = {self._idProduto} '''
         return sql
 
     def alterarProduto(self, tabela):
         sql = f'''
         UPDATE "{tabela}"
-        SET "Nome do Produto" = '{self._nomeProduto}', "Categoria" = '{self._categoria}', "Quantidade" = '{self._quantidade}', "Preço Unitário" = '{self._preçoUnit}'
-        WHERE "ID do Produto" = '{self._idProduto}'
+        SET "Nome" = '{self._nomeProduto}', "Categoria" = '{self._categoria}', "Quantidade" = '{self._quantidade}', "Preço" = '{self._preçoUnit}'
+        WHERE "Nome" = '{self._nomeProduto}'
         '''
         return sql
     
@@ -31,6 +36,6 @@ class Produto:
 
         sql = f'''
         DELETE FROM "{tabela}"
-        WHERE "ID do Produto" = {self._idProduto}
+        WHERE "ID" = {self._idProduto}
         '''
         return sql

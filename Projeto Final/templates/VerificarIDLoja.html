@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ConfirmaçãoIDLoja</title>
+</head>
+
+<body>
+    <h1>Confirmação de ID da Loja</h1>
+    <script>
+        function doSomething() {
+            alert('ID confirmado!');
+            return true;
+        }
+    </script>
+    <form onsubmit="return doSomething()" method="post">
+        <div>
+            <label> ID da Loja: </label>
+            <input type="text" name="idLoja" placeholder="Digite aqui ID da sua loja" value="{{request.form['idLoja']}}">
+
+        </div>
+        <div>
+            <button type="submit">Efetuar Confirmação</button>
+        </div>
+    </form>
+</body>
+
+</html>

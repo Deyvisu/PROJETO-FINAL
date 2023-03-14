@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset ="UTF-8">
+    <title>MinhasLojas</title>
+
+</head>
+
+<body>
+    <div class="container-minhaLoja">
+    <h1>Minhas Lojas</h1>
+        <div class="container-dadosMinhaLoja">
+            <ul>
+                {% for dado in dados %}
+                <p>Nome da loja: {{dado[1]}}</p>
+                <p>CNPJ: {{dado[2]}}</p>
+                <p>CPF do Usuário: {{dado[4]}}</p>
+                <p>ID do Endereço: {{dado[3]}}</p>
+                <p>ID da Loja: {{dado[0]}}</p>
+                {%endfor%}
+            </ul>
+        
+            <h2>Opções de usuário: </h2>
+            <a href = "/CadastrarProdutos">Cadastrar Produtos</a>
+            <a href = "/VerificarIDLoja">Ver Produtos de uma Loja</a>
+        </div>
+
+    </div>
+        <a href = "/">Voltar à página inicial</a>
+    
+    </div>
+
+    
+    </body>
+
+    </html>

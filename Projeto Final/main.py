@@ -182,9 +182,9 @@ def cadastrarProd():
         con.manipularBanco(produto.cadastrarProduto("Cadastro_Produto"))
         resultadoProduto = con.consultarBanco(produto.listarProdutos("Cadastro_Produto"))
         if resultadoProduto == []:
-            return render_template("ExibirProdutos.html") #escrever mensagem que retornou vazio
+            return redirect("/ExibirProdutos") #escrever mensagem que retornou vazio
         else:
-            return render_template("ExibirProdutos.html", dadosProduto = resultadoProduto)
+            return redirect("/ExibirProdutos")
     else:
         return render_template("CadastrarProdutos.html") #escrever mensagem que tentou enviar vazio
 
@@ -226,17 +226,21 @@ def deletarProd():
     else:
         return render_template('DeletarProduto.html') #colocar mensagem de erro
 
-# @app.route("/Carrinho", methods=("GET", "POST"))
-# def mostrarCarrinho():
-#     if request.method == "POST":
-#         carrinho = Carrinho(None, None, None, None, None, None)
-#         resultado = con.consultarBanco(carrinho.mostrarCarrinho("Carrinho"))
-#         if resultado == []:
-#             return render_template('')
-#         else:
-#             return render_template('', carrinho = resultado)
-#     else:
-#         return render_template('')
+@app.route("/Carrinho")
+def mostrarCarrinho():
+    render_template("Carrinho.html")
+
+
+# Compra individual: Pagina, do Select dos produtos da loja, e um botao de fazer a compra(post, idCompra, a quantidade, id cliente, ). Campo quantidade, etc.
+
+
+# LocalStorage para armazenar o ID dos produtos comprados
+# Na pagina carrinho: Pegar ID guardado no LocalStorage e consultar o flask pra pegar as info dos produtos
+# Criar rota "produtos/ID" que returne as informações do produto
+# Salvar no javascript da pagina carrinho.html e usar as infos para imprimir os produtos no carrinho.
+
+# @app.route("/loja/<int:idLoja>") uma pagina com o ID da loja, e posteriormente exibir o produto
+
      
 
 if __name__== "__main__":

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>AlteraçãoProduto</title>
+</head>
+<body>
+    <h1>Alteração de um Produto</h1>
+
+    <form method="post">
+        <div>
+            <label> ID do Produto: </label>
+            <input type= "text" name="idProduto" placeholder="Digite aqui o ID do produto" value="{{request.form['idProduto']}}">
+            <p>OBS: O ID deve ser o mesmo ID usado para a consulta</p>
+        </div>
+        <div>
+            <label> Nome do Produto: </label>
+            <input type= "text" name="nomeProduto" placeholder="Digite aqui nome do Produto" value="{{request.form['nomeProduto']}}">
+        </div>
+
+        <div>
+            <label> Categoria: </label>
+            <input type= "text" name="categoria" placeholder="Digite aqui a Categoria do produto" value="{{request.form['categoria']}}">
+        </div>
+
+        <div>
+            <label> Quantidade: </label>
+            <input type= "text" name="quantidade" placeholder="Digite aqui a Quantidade" value="{{request.form['quantidade']}}">
+        </div>
+
+        <div>
+            <label> Preço Unitário: </label>
+            <input type= "text" name="preco" placeholder="Digite o Preço Unitário do produto" value="{{request.form['preco']}}">
+        </div>
+
+        <div>
+            <button type="submit">Efetuar Alteração</button>
+        </div>
+        
+    </form>
+</body>
+
+</html>

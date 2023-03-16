@@ -28,7 +28,7 @@ class Produto:
         sql = f'''
         UPDATE "{tabela}"
         SET "Nome" = '{self._nomeProduto}', "Categoria" = '{self._categoria}', "Quantidade" = '{self._quantidade}', "Preço" = '{self._preçoUnit}'
-        WHERE "Nome" = '{self._nomeProduto}'
+        WHERE "ID" = {self._idProduto}
         '''
         return sql
     

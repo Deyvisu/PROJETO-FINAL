@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset ="UTF-8">
+    <title>Loja</title>
+
+</head>
+
+<body>
+    <div class="container-loja">
+    <h1>Loja</h1>
+        <h2>Nossos Produtos:</h2>
+        <div class="container-dadosloja">
+            <ul>
+                {% for dadoProduto in dadosProduto %}                 
+                <p>ID do Produto: {{dadoProduto[0]}}</p> 
+                <p>Nome do Produto: {{dadoProduto[1]}}</p> 
+                <p>Categoria: {{dadoProduto[2]}}</p> 
+                <p>Quantidade: {{dadoProduto[3]}}</p> 
+                <p>Preço Unitário do Produto: {{dadoProduto[4]}}</p> 
+                <button>Comprar</button>
+                <p>-----------------------------------------------------</p>
+                {%endfor%}
+            </ul>
+        </div>
+
+    </div>
+        <a href = "/">Voltar à página inicial</a>
+    </div>
+
+    
+    </body>
+
+    </html>

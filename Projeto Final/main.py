@@ -209,6 +209,32 @@ def exibirProd():
 
     return render_template('ExibirProdutos.html', dadosProduto = resultado)
 
+@app.route("/ConfirmaçãoAlterarProduto", methods=("GET", "POST"))
+def confirAltProd():
+    if request.method == "POST":
+        consultarProduto = Produto(request.form["idAlterar"], None, None, None, None, None)
+        resultadoConsultarProduto = con.consultarBanco(consultarProduto.listarProdutoID("Cadastro_Produto"))
+        if resultadoConsultarProduto == []:
+            return redirect ("/ConfirmaçãoAlterarProduto") #colocar mensagem de que o id do produto n existe
+        else: 
+            return redirect('/AlterarProduto') #colocar mensagem de que o produto foi deletado
+    else:
+        return render_template ('ConfirmaçãoAlterarProduto.html') #colocar mensagem de erro
+
+    
+@app.route("/AlterarProduto", methods=("GET", "POST"))
+def alterarProd():
+    if request.method == "POST":
+        produto = Produto(request.form["idProduto"], request.form["nomeProduto"], request.form["categoria"], request.form["quantidade"], request.form["preco"], None)
+        con.manipularBanco(produto.alterarProduto("Cadastro_Produto"))
+        resultadoProduto = con.consultarBanco(produto.listarProdutos("Cadastro_Produto"))
+        if resultadoProduto == []:
+            return redirect("/ExibirProdutos") #escrever mensagem que retornou vazio
+        else:
+            return redirect("/ExibirProdutos")
+    else:
+        return render_template("AlterarProduto.html") #escrever mensagem que tentou enviar vazio
+
 
 @app.route("/DeletarProduto", methods=("GET", "POST"))
 def deletarProd():
@@ -222,9 +248,21 @@ def deletarProd():
             con.manipularBanco(produto.deletarProduto("Cadastro_Produto"))
             resultado = con.consultarBanco(produto.listarProdutos("Cadastro_Produto"))
 
-            return render_template("ExibirProdutos.html", dadosProduto = resultado) #colocar mensagem de que o produto foi deletado
+            return redirect("/ExibirProdutos") #colocar mensagem de que o produto foi deletado
     else:
         return render_template('DeletarProduto.html') #colocar mensagem de erro
+
+@app.route("/Loja/<int:idLoja>") #uma pagina com o ID da loja, e posteriormente exibir o produto
+def paginaLoja(idLoja):
+    id = idLoja
+    loja = Loja(id, None, None, None, None)
+    resultado = con.consultarBanco(loja.mostrarLojaID("Cadastro_Loja"))
+    if resultado == []:
+        return redirect("/PáginaErro")
+    else:
+        produto = Produto(None, None, None, None, None, {resultado[0][0]})
+        resultado = con.consultarBanco(produto.listarProdutos("Cadastro_Produto"))
+        return render_template("Loja.html", dadosProduto = resultado)
 
 @app.route("/Carrinho")
 def mostrarCarrinho():
@@ -239,7 +277,7 @@ def mostrarCarrinho():
 # Criar rota "produtos/ID" que returne as informações do produto
 # Salvar no javascript da pagina carrinho.html e usar as infos para imprimir os produtos no carrinho.
 
-# @app.route("/loja/<int:idLoja>") uma pagina com o ID da loja, e posteriormente exibir o produto
+
 
      
 

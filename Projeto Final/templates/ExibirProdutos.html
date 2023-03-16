@@ -19,16 +19,17 @@
     <p>Preço Unitário do Produto: {{dadoProduto[4]}}</p> 
     <p>ID da Loja: {{dadoProduto[5]}}</p> 
     {%endfor%}
+    <p>------------------------------------------------------------</p>
     </div>
 </ul>
 
 <h2>Opções de Produto: </h2>
-<a href = "/AlterarProduto">Alterar um Produto</a>
+<a href = "/CadastrarProdutos">Cadastrar Produtos</a>
+<a href = "/ConfirmaçãoAlterarProduto">Alterar um Produto</a>
 <a href = "/DeletarProduto">Deletar um Produto</a>
-<a href = "/CadastrarProdutos">Voltar ao Cadastro de Produtos</a>
 
 <h2>Outras Opções</h2>
-<a href = "/MinhasLojas">Voltar a sua Loja</a>
+<a href = "/user/{{dadosProduto[0][5]}}/MinhasLojas">Voltar a sua Loja</a>
 
 </div>
 

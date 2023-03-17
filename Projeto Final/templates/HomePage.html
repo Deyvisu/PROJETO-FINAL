@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title tabindex="1">MEIC</title>
-    <style>
-        h1{color: rgba(0, 0, 0, 0.932);}
-        p{font-size: 20px; font-style: normal;}
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/homepage.css')}}">
+    <link rel="icon" href="{{ url_for('static',filename='img/icon1.png')}}">
 
 
 </head>
 <body>
+    <div class="header">
+         
+        <nav class="nav">
+            <a href="/" >
+                <img src="{{ url_for('static',filename='img/icon4.png')}}" alt="Meic" id="brand-logo">
+            <a href = "/Atendimento">Atendimento</a>
+            <a href = "/MeusPedidos">Meus Pedidos</a>
+            <a href = "/MostrarLojas">Nossas Lojas</a>
+            <a href = "/CadastroLojaLogin">Cadastre sua loja</a>
+
+    </nav>
+    </div>
+
     <h1>MEIC - Micro Empreendedor Independente de Caucaia</h1>
 
     <p> Bem vindo ao site do micro empreendedor independente de Caucaia, onde você poderá tanto cadastrar sua loja e vender seus produtos para todos,
         ou apenas utilizar para a compra produtos dos vendedores micro empreendedores daqui de Caucaia. Sinta-se a vontade e visite nossas lojas parceiras!
     </p>
-
-    <ul><a href = "/Atendimento">Atendimento</a>
-        <a href = "/MeusPedidos">Meus Pedidos</a>
-        <a href = "/MostrarLojas">Nossas Lojas</a>
-        <a href = "/CadastroLojaLogin">Cadastre sua loja</a>
-    </ul>
 
     <ul>
         <li><a href = "/CadastroUsuario"> Não possui uma conta? Clique aqui para Cadastrar-se</a></li>
@@ -45,6 +50,9 @@
         <a href = "/PaguePixCartao">Pague com Pix ou Cartão</a>
     </ul>
     <a href="http://google.com" target = "_blank">Google</a>
+
+-->
+
 </body>
 
 </html>

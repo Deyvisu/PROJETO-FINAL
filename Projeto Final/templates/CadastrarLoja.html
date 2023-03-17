@@ -3,34 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Loja</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+    <link rel="icon" href="{{ url_for('static',filename='img/icon1.png')}}">
+
 </head>
 <body>
-    <h1>Cadastro de Loja</h1>
 
     <form method="post">
-        <div>
-            <label> Nome da Loja: </label>
-            <input type= "text" name="nomeLoja" placeholder="Digite aqui seu nome da sua loja" value="{{request.form['nomeLoja']}}">
-        </div>
-
-        <div>
-            <label> CNPJ: </label>
-            <input type= "text" name="cnpj" placeholder="Digite aqui o CNPJ da sua loja" value="{{request.form['cnpj']}}">
-        </div>
-
-        <div>
-            <label> ID do seu Endereço: </label>
-            <input type= "text" name="idEndereço" placeholder="Digite aqui o ID do seu Endereço" value="{{request.form['idEndereço']}}">
-        </div>
-
-        <div>
-            <label> Seu CPF: </label>
-            <input type= "text" name="cpf" placeholder="Digite aqui seu CPF" value="{{request.form['cpf']}}">
-        </div>
-
-    
-        <div>
-            <button type="submit">Efetuar Cadastro de Loja</button>
+        <div id="cadastroloja-container">
+        <h1>Cadastro de Loja</h1>
+        <label> Nome da Loja: </label>
+        <input type= "text" name="nomeLoja" placeholder="Digite aqui seu nome da sua loja" value="{{request.form['nomeLoja']}}">
+        
+        <label> CNPJ: </label>
+        <input type= "text" name="cnpj" placeholder="Digite aqui o CNPJ da sua loja" value="{{request.form['cnpj']}}">
+        
+        <label> ID do seu Endereço: </label>
+        <input type= "text" name="idEndereço" placeholder="Digite aqui o ID do seu Endereço" value="{{request.form['idEndereço']}}">
+        
+        <label> Seu CPF: </label>
+        <input type= "text" name="cpf" placeholder="Digite aqui seu CPF" value="{{request.form['cpf']}}">
+        
+        <button type="submit" class="botaoefetuarcadastro">Efetuar Cadastro de Loja</button>
         </div>
         
     </form>

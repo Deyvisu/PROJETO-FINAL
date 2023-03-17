@@ -195,6 +195,85 @@ input:focus {
 }
 
 .botaoAlterar:hover {
+    background-color: #4E0086;
+    transition: .5s;
+}
+
+
+/*cadastrologinloja*/
+
+
+#direcionamento-container{
+    background-color: #FFF;
+    box-shadow: #472b5a;
+    width: 400px;
+    margin-left: auto  ;
+    margin-right: auto;
+    padding: 40px 30px;         
+    margin-top: 10vh;           
+    border-radius: 10px;        
+    text-align:center
+} 
+
+.loginid{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.botaocadastroloja {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    height: 40px;
+    width: 130px;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;   
+    background-color: #4E0086;
+    color: #FFF;
+    cursor: pointer;  
+}
+
+.botaocadastroloja:hover {
     background-color: #1B223C;
     transition: .5s;
+}
+
+/*CADASTRO LOJA */
+
+#cadastroloja-container{
+    background-color: #FFF;
+    box-shadow: #472b5a;
+    width: 400px;
+    margin-left: auto  ;
+    margin-right: auto;
+    padding: 40px 30px;         
+    margin-top: 10vh;           
+    border-radius: 10px;        
+    text-align:center
+} 
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.botaoefetuarcadastro {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    height: 40px;
+    width: 130px;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;   
+    background-color: #4E0086;
+    color: #FFF;
+    cursor: pointer;  
+    }
+    
+.botaocadastroloja:hover {
+        background-color: #1B223C;
+        transition: .5s;
 }

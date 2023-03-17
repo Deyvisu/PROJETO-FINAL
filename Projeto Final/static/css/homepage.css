@@ -1,0 +1,63 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color: #323232;
+    border: none;
+  }
+  
+  body {
+    background-color: #F1F1F1;
+  }
+  
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
+  
+  a {
+    font-size: 0.8rem;
+  }
+  
+  a:hover {
+    color: #4E0086;
+  }
+  
+  #brand-logo{
+    width: 100px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4E0086;
+    padding: 10px;
+  }
+  
+  .nav {
+    display: flex;
+    margin-left: auto;
+    gap: 40px;
+  }
+  
+  .nav a {
+    top: 20px;
+    left: 40px;
+    right: 20px;
+    font-size: 18px;
+    color: #fffefe;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  .nav a:hover {
+    color: #f4f800;
+  }
+  
+

@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+    <link rel="icon" href="{{ url_for('static',filename='img/icon1.png')}}">
     <title>Verificação</title>
 </head>
 <body>
-    <div id="verificacao-container">
-    <h1>Já possui cadastro?</h1>
-    <a href = "/LoginUsuario">Faça o login</a>
-    <h1>Não possui cadastro?</h1>
-    <a href = "/CadastroUsuario">Cadastre-se</a>
+    <div id="direcionamento-container">
+    <h1>É um prazer tê-lo como nosso parceiro!</h1>
+    <h2 class="loginid">Já possui cadastro?</h2>
+    <a href = "/LoginUsuario"><button type="submit" class="botaocadastroloja">Faça o login</button></a>
+    <h2 class="loginid">Não possui cadastro?</h2>
+    <a href = "/CadastroUsuario"><button type="submit" class="botaocadastroloja">Cadastre-se</button></a>
 
 </body>
 

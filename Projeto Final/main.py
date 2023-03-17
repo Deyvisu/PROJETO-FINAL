@@ -228,7 +228,7 @@ def deletarProd():
 
 @app.route("/Carrinho")
 def mostrarCarrinho():
-    render_template("Carrinho.html")
+    return render_template("Carrinho.html")
 
 
 # Compra individual: Pagina, do Select dos produtos da loja, e um botao de fazer a compra(post, idCompra, a quantidade, id cliente, ). Campo quantidade, etc.

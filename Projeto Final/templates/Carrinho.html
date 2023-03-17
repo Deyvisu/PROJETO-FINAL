@@ -18,8 +18,9 @@
             padding: 25px;
         }
     </style>
+        
 </head>
-<body>
+<body onload="renderizarLocalStorage('listaDeCompras')">
     <div class = "conteudo" >
         <div>
             <input type = "text" id="novoItem">
@@ -27,9 +28,11 @@
         </div>
 
         <ul id="itens">
+        
         </ul>
     </div>
-
-    <script src="JSTESTES/ListaCarrinho.js"></script>
+    <script  src="{{ url_for('static',filename='ListaCarrinho.js')}}">
+    </script>
+    
 </body>
 </html>

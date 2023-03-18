@@ -26,9 +26,9 @@
   }
   
   #brand-logo{
-    width: 100px;
-    position: absolute;
-    top: 10px;
+    width: 180px;
+    position:fixed;
+    top: -20px;
     left: 10px;
   }
   
@@ -61,3 +61,108 @@
   }
   
 
+/*MENU-categoria*/
+
+.menu-categoria ul{
+  list-style: none;
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  
+}
+
+.menu-categoria ul li{
+  display: inline-block;  /* Todos na linha */
+  position: relative;
+  
+}
+
+.menu-categoria ul li:hover .sub-menucategoria {
+  display: block;
+}
+
+.sub-menucategoria{
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  padding: 0;
+  margin-top: 0px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.sub-menucategoria li {
+    display: block;
+    width: 200px;
+    text-align: left;
+    padding: 5px 10px;
+}
+
+.sub-menucategoria li a {
+    color: #000;
+    text-decoration: none;
+}
+
+.categoria:hover {
+    background-color: #ccc;
+}
+
+.categoria a {
+    display: block;
+    padding: 5px 10px;
+    color: #000;
+    text-decoration: none;
+}
+
+
+/*barra de pesquisa*/
+.buscar-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: center;
+  background-color: #4E0086;
+}
+
+input[type="text"], input[type="password"] {
+  display: inline-block;
+  padding-top: 20px;
+  padding-left: 200px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+button[type="submit"] {
+  display:inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffffff;
+  color: #4E0086;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  position: relative;
+  text-indent: 10px;
+  left: -190px; /* ajusta a posição do placeholder */
+  top: -5px
+}
+
+.login-user {
+  background-color: #ffffff;
+  text-decoration: none;
+  position: relative;
+}

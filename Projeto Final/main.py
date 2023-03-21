@@ -12,7 +12,7 @@ from Controle.classeConexao import Conexao
 app = Flask(__name__, static_folder="static")
 
 try:
-    con = Conexao("MEIC", "localhost","5432","postgres","7289")
+    con = Conexao("MEIC", "localhost","5432","postgres","postgres")
 
 except(Exception, psycopg2.Error) as error:
     print("Ocorreu um erro - ", error)

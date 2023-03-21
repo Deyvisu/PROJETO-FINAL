@@ -142,7 +142,6 @@ input[type="text"], input[type="password"] {
 }
 
 button[type="submit"] {
-  display:inline-block;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
@@ -150,18 +149,18 @@ button[type="submit"] {
   color: #4E0086;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+
 }
 
 
-input[type="text"]::placeholder,
-input[type="password"]::placeholder {
+input[type="text"]::placeholder{
   position: relative;
   text-indent: 10px;
   left: -190px; /* ajusta a posição do placeholder */
   top: -5px
 }
 
-.login-user {
+#login {
   background-color: #ffffff;
   text-decoration: none;
   position: relative;

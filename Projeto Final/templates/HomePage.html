@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title tabindex="1">MEIC</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/homepage.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="icon" href="{{ url_for('static',filename='img/icon1.png')}}">
 
 
@@ -46,27 +47,27 @@
         </div>
     </nav>
 
-     
-    <nav class="buscar-login">
-        <form action="/busca" method="get">
-            <input type="text" name="busca" placeholder="Buscar produtos...">
-            <button type="submit">Buscar</button>
-            </form>
-    </nav>
     
-    <nav class="login-user" id="login">     
-
-        <ul>
-            <li><a href = "/CadastroUsuario">Cadastrar-se</a></li>
-            <li><a href = "/LoginUsuario"> Efetuar o Login</a></li>
-        </ul>
+    <nav class="barra-busca">
+        <h1 class="nome"> MEIC - Micro Empreendedor Independente de Caucaia</h1>
+        <div class= "busca-container">
+            <form action="/busca" method="get">
+                <input type="text" name="busca" placeholder="Buscar produtos...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    
+        <div class="botao-login">  
+            <a href = "/CadastroUsuario" class="cadastra-botao">Cadastrar-se</a></li>
+            <a href = "/LoginUsuario" class="login-botao">Efetuar o Login</a></li>
+        </div>
 
     </nav>
 
 
 
 <!--
-     <h1>MEIC - Micro Empreendedor Independente de Caucaia</h1>
+     <h1></h1>
 
     <p> Bem vindo ao site do micro empreendedor independente de Caucaia, onde você poderá tanto cadastrar sua loja e vender seus produtos para todos,
         ou apenas utilizar para a compra produtos dos vendedores micro empreendedores daqui de Caucaia. Sinta-se a vontade e visite nossas lojas parceiras!

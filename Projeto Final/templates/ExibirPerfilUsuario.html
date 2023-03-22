@@ -9,42 +9,79 @@
 </head>
 
 <body>
-    <div class="container-geral">
-    <h1>Seu Perfil</h1>
-        <div class="container-dadosusuario">
-            <h1>Seus dados:</h1>
+    <div class="header">
+         
+        <nav class="nav">
+            <a href="/" >
+                <img src="{{ url_for('static',filename='img/icon4.png')}}" alt="Meic" id="brand-logo">
+            <a href = "/Atendimento">Atendimento</a>
+            <a href = "/MeusPedidos">Meus Pedidos</a>
+            <a href = "/MostrarLojas">Nossas Lojas</a>
+            <a href = "/CadastroLojaLogin">Cadastre sua loja</a>
 
-            <ul>
-                {% for dado in dados %}
-                <p>ID: {{dado[0]}}</p>
-                <p>Nome Completo: {{dado[1]}}</p>
-                <p>Data de Nascimento: {{dado[2]}}</p>
-                <p>CPF: {{dado[3]}}</p>
-                <p>Telefone: {{dado[4]}}</p> 
-                <p>E-mail: {{dado[5]}}</p>
-                {%endfor%}
-            </ul>
-        
-            <h2>Opções de usuário: </h2>
-            <a href = "/ConfirmaçãoCPFAlterar">Alterar informações Pessoais</a>
-            
-            <h2>Opções de Loja</h2>
-            <a href = "/CadastrarLoja"> Cadastrar uma Loja</a>
-            <a href = "/user/{{dados[0][0]}}/MinhasLojas"> Minhas Lojas</a>
-
-        </div>
-        
-        <div class="container-geral">
-            </div class="container-dadosendereco">
-                <h2>Opções de Endereço:</h2> 
-            </div>
-        </div>
-            <a href="/user/{{dados[0][0]}}/ExibirEndereco"> Entrar meus Endereços</a>
-            <a href = "/">Voltar à página inicial</a>
-        
-        </div>
+    </nav>
+    </div>
 
     
+    <h1 class="titulo">Minha Conta </h1>
+    <div class="container">
+        <!-- card 1-->
+        <div class="card">
+            <div class="conteudo">
+                <h1>Seus dados:</h1>
+                <ul>
+                    {% for dado in dados %}
+                    <p>ID: {{dado[0]}}</p>
+                    <p>Nome Completo: {{dado[1]}}</p>
+                    <p>Data de Nascimento: {{dado[2]}}</p>
+                    <p>CPF: {{dado[3]}}</p>
+                    <p>Telefone: {{dado[4]}}</p> 
+                    <p>E-mail: {{dado[5]}}</p>
+                    {%endfor%}
+                </ul>
+            
+                <h2>Opções de usuário: </h2>
+                <a href = "/ConfirmaçãoCPFAlterar">Alterar informações Pessoais</a>      
+            </div>
+        </div>   
+ 
+           <!-- card 2-->
+        <div class="card">
+            <h1> Endereço</h1>
+            <div class="conteudo">
+                <p> Aqui você pode: </p>
+                <p> Visualizar seus Endereços </p>
+                <p> Delete ou Altere</p> 
+
+            <a href="/user/{{dados[0][0]}}/ExibirEndereco"> Entrar meus Endereços</a>
+            <a href = "/">Voltar à página inicial</a>
+            </div>
+        </div> 
+        
+        <!-- card 3 -->
+        <div class="card">
+            <h1>Minhas Lojas</h1>
+            <div class="conteudo">
+                <p> Aqui você pode:</p>
+                <p> Cadastrar Loja </p>
+                <p> Gerenciar sua Lojas</p> 
+
+            <a href = "/CadastrarLoja"> Cadastrar uma Loja</a>
+            <a href = "/user/{{dados[0][0]}}/MinhasLojas"> Minhas Lojas</a>
+            </div>
+        </div>
+
+            <!-- card 4 -->
+        <div class="card">
+            <h1>Minhas Compras</h1>
+            <div class="conteudo">
+                <p> Acompanhe seus pedidos</p> 
+
+            <a href = "#"> Visualizar Compras</a>
+
+            </div>
+        </div>
+    </div>
     </body>
 
     </html>

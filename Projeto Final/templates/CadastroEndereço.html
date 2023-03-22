@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Endereço</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styleCadastroEndereco.css')}}">
     <link rel="icon" href="{{ url_for('static',filename='img/icon1.png')}}">
 
 </head>
@@ -34,13 +34,14 @@
         });
 }
     </script>
-    <h1>Cadastro de Endereço</h1>
+    <div class="cadastro-endereco">
+    <h1 class="titulo">Cadastro de Endereço</h1>
 
     <form method="post">
-        <div>
+        <div class="formulario">
             <label> CEP: </label>
             <input type="text" name="cep" placeholder="Digite aqui seu cep" value="{{request.form['cep']}}">
-            <button type="button" onclick="preencherEndereco()">Preencher Endereço</button>
+            <button type="button" class="botaopreencher" onclick="preencherEndereco()">Preencher Endereço</button>
 
             <label> Nome da Rua: </label>
             <input type="text" name="nomeRua" placeholder="Digite aqui o nome da sua rua"
@@ -73,14 +74,10 @@
             <label> CPF do Usuário: </label>
             <input type="text" name="cpfUsuario" placeholder="Digite aqui seu cpf"
                 value="{{request.form['cpfUsuario']}}">
+            <button type="submit" class="botaocadastroend">Efetuar Cadastro de Endereço</button>
         </div>
-
-        <div>
-            <button type="submit">Efetuar Cadastro de Endereço</button>
-        </div>
-
-    </form>
-   
+    </div>
+ 
 
 </body>
 

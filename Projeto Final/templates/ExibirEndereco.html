@@ -3,37 +3,42 @@
 <head>
     <meta charset ="UTF-8">
     <title>Ver Perfil</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styleExibirEndereco.css')}}">
+    <link rel="icon" href="{{ url_for('static',filename='img/icon1.png')}}">
 
 
+    
 </head>
 
-</div class="container-dadosendereco">
-<h1>Seus dados de Endereço:</h1>
-<ul>
-    <div class="container-enderecocadastrado"></div>
-    {% for dadoEndereço in dadosEndereço %}                 
-    <p>ID do Endereço: {{dadoEndereço[0]}}</p> 
-    <p>CEP: {{dadoEndereço[1]}}</p> 
-    <p>Nome da Rua: {{dadoEndereço[2]}}</p> 
-    <p>Número do Endereço: {{dadoEndereço[3]}}</p> 
-    <p>Complemento: {{dadoEndereço[4]}}</p> 
-    <p>Nome do Bairro: {{dadoEndereço[5]}}</p> 
-    <p>Ponto de Referência: {{dadoEndereço[6]}}</p> 
-    <p>Cidade: {{dadoEndereço[7]}}</p> 
-    <p>Estado: {{dadoEndereço[8]}}</p> 
-    <p>CPF do Usuário: {{dados[0][4]}}</p>
-    {%endfor%}
-    <p>-----------------------------------------------------</p>
+<div class="container-dadosendereco">
+    <div class="card-pri">
+        <h1 class="card-titulo">Seus dados de Endereço:</h1>
+        <div class="container-enderecocadastrado">
+            {% for dadoEndereço in dadosEndereço %}                 
+            <div class="endereco-{{loop.index}}">
+                <p>ID do Endereço: {{dadoEndereço[0]}}</p> 
+                <p>CEP: {{dadoEndereço[1]}}</p> 
+                <p>Nome da Rua: {{dadoEndereço[2]}}</p> 
+                <p>Número do Endereço: {{dadoEndereço[3]}}</p> 
+                <p>Complemento: {{dadoEndereço[4]}}</p> 
+                <p>Nome do Bairro: {{dadoEndereço[5]}}</p> 
+                <p>Ponto de Referência: {{dadoEndereço[6]}}</p> 
+                <p>Cidade: {{dadoEndereço[7]}}</p> 
+                <p>Estado: {{dadoEndereço[8]}}</p> 
+                <p>CPF do Usuário: {{dados[0][4]}}</p>
+            </div>
+            {%endfor%}
+        </div>
     </div>
-</ul>
+</div>
 
-<h2>Opções de Endereço: </h2>
-<a href = "/CadastroEndereço">Cadastrar Endereço</a>
-<a href = "/ConfirmacaoCPFEnderecoAlterar">Alterar informações de Endereço</a>
-<a href = "/DeletarEndereço">Deletar um Endereço</a>
+<div class="opcoes">
+    <a href = "/CadastroEndereço">Cadastrar Endereço</a>
+    <a href = "/ConfirmacaoCPFEnderecoAlterar">Alterar informações de Endereço</a>
+    <a href = "/DeletarEndereço">Deletar um Endereço</a>
+    <a href = "/">Voltar à página inicial</a>
 
 </div>
 
-</div>
 
-<a href = "/">Voltar à página inicial</a>
+

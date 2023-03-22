@@ -1,0 +1,103 @@
+/*geral*/
+
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color: #323232;
+    border: none;
+}
+
+body {
+    background-color: #F1F1F1;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+a {
+    font-size: .8rem; 
+}
+
+a:hover {
+    color: #4E0086;
+}
+
+.altendereco {
+background-color: #FFF;
+width: 400px;
+margin-left: auto  ;
+margin-right: auto;
+padding: 40px 30px;         /*fazer margem*/
+margin-top: 10vh;           /*comerçar 10% da tela do usuario*/
+border-radius: 10px;        /*arrendondar cantos*/
+text-align: center;
+}
+
+.titulo {
+    color:#4E0086;
+    margin-bottom: 10%;  
+}
+
+label,input{
+    display: block;     /*deixar um embaixo do outro*/
+    width: 100%;
+    text-align: left;
+
+}
+
+label {
+    font-weight: bold;
+    font-size: .9rem;
+    
+}
+
+input {
+    border-bottom: 2px solid #323232;
+    padding: 10px;              
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+input:focus {
+    border-bottom: 3px solid #4E0086;
+}
+
+.botaoAlterar {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    height: 60px;
+    width: 140px;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;   
+    background-color: #4E0086;
+    color: #FFF;
+    cursor: pointer;  
+    }
+    
+.botaoAlterar:hover {
+        background-color: #1B223C;
+        transition: .5s;
+}
+
+.volte {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #4E0086;
+    color: #FFF;
+    cursor: pointer;  
+    }
+    
+.volte:hover {
+    background-color: #1B223C;
+    transition: .5s;
+}
